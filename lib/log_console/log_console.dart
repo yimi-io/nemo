@@ -55,7 +55,7 @@ class _LogConsoleState extends State<LogConsole> {
   var _scrollController = ScrollController();
   var _filterController = TextEditingController();
 
-  LevelBean _filterLevel = LogLevels.leves.firstWhere((LevelBean bean) => bean.levelIndex == 0);
+  LevelBean _filterLevel = LogLevels.leves.firstWhere((LevelBean bean) => bean.levelIndex == 0, orElse: () => new LevelBean(levelType: "verbose", levelIndex: 0));
   double _logFontSize = 14;
 
   var _currentId = 0;
