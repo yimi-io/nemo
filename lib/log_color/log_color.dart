@@ -35,10 +35,6 @@ class AnsiColor{
     }
   }
 
-//  static AnsiColor randomColor() {
-//    return Color.fromARGB(255, Random().nextInt(256)+0, Random().nextInt(256)+0, Random().nextInt(256)+0);
-//  }
-
   String call(String msg) {
     if (color) {
       return "${this}$msg$ansiDefault";

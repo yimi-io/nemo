@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:nemo/event/log_event.dart';
 import 'package:nemo/levels/level_bean.dart';
 import 'package:nemo/levels/log_level.dart';
+import 'package:nemo/log_color/AnsiParser.dart';
 import 'package:nemo/log_color/log_color.dart';
 
 import 'log_printer.dart';
@@ -30,21 +31,33 @@ class PrettyPrinter extends LogPrinter {
   static const singleDivider = "┄";
 
   static final levelColors = {
-    Level.verbose: AnsiColor.fg(AnsiColor.grey(0.5)),
-    Level.debug: AnsiColor.none(),
-    Level.info: AnsiColor.fg(12),
-    Level.warning: AnsiColor.fg(208),
-    Level.error: AnsiColor.fg(196),
-    Level.wtf: AnsiColor.fg(199),
+//    Level.verbose: AnsiColor.fg(AnsiColor.grey(0.5)),
+//    Level.debug: AnsiColor.none(),
+//    Level.info: AnsiColor.fg(12),
+//    Level.warning: AnsiColor.fg(208),
+//    Level.error: AnsiColor.fg(196),
+//    Level.wtf: AnsiColor.fg(199),
+    "verbose": AnsiColor.fg(AnsiColor.grey(0.5)),
+    "debug": AnsiColor.none(),
+    "info": AnsiColor.fg(12),
+    "warning": AnsiColor.fg(208),
+    "error": AnsiColor.fg(196),
+    "wtf": AnsiColor.fg(199),
   };
 
   static final levelEmojis = {
-    Level.verbose: '',
-    Level.debug: '🐛 ',
-    Level.info: '💡 ',
-    Level.warning: '⚠️ ',
-    Level.error: '⛔ ',
-    Level.wtf: '👾 ',
+//    Level.verbose: '',
+//    Level.debug: '🐛 ',
+//    Level.info: '💡 ',
+//    Level.warning: '⚠️ ',
+//    Level.error: '⛔ ',
+//    Level.wtf: '👾 ',
+    "verbose": '',
+    "debug": '🐛 ',
+    "info": '💡 ',
+    "warning": '⚠️ ',
+    "error": '⛔ ',
+    "wtf": '👾 ',
   };
 
   static final stackTraceRegex = RegExp(r'#[0-9]+[\s]+(.+) \(([^\s]+)\)');
@@ -184,7 +197,7 @@ class PrettyPrinter extends LogPrinter {
 
   AnsiColor _getErrorColor(LevelBean level) {
     if (colors) {
-      if (level == Level.wtf) {
+      if (level.levelType == Level.wtf) {
         return levelColors[Level.wtf].toBg();
       } else {
         return levelColors[Level.error].toBg();
@@ -196,8 +209,8 @@ class PrettyPrinter extends LogPrinter {
 
   String _getEmoji(LevelBean level) {
     if (printEmojis) {
-      if(levelColors.containsKey(level.levelType)){
-        return levelEmojis[level];
+      if(levelEmojis.containsKey(level.levelType)){
+        return levelEmojis[level.levelType];
       }
     } else {
       return "";
