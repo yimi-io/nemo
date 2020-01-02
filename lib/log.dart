@@ -53,7 +53,7 @@ class Logger {
     _output.init();
   }
 
-  void _setOutput(LogOutput output){
+  void setOutput(LogOutput output){
     _output = output;
   }
 
