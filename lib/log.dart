@@ -31,7 +31,7 @@ class Logger {
 
   final LogFilter _filter;
   final LogPrinter _printer;
-  final LogOutput _output;
+  LogOutput _output;
   bool _active = true;
 
   /// Create a new instance of Logger.
@@ -51,6 +51,10 @@ class Logger {
     _filter.level = level ?? Logger.level;
     _printer.init();
     _output.init();
+  }
+
+  void _setOutput(LogOutput output){
+    _output = output;
   }
 
   /// Log a message at level [Level.verbose].
