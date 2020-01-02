@@ -84,7 +84,7 @@ class Logger {
   void other(String levelType, dynamic message, [dynamic error, StackTrace stackTrace]){
     LevelBean bean = new LevelBean(levelIndex: LogLevels.leves.length, levelType: levelType);
     log( LogLevels.leves.firstWhere((levenBean) => levenBean.levelType==levelType, orElse: () => bean), message, error, stackTrace);
-    if(LogLevels.leves.firstWhere((LevelBean levelBean) => levelBean.levelIndex == bean.levelIndex, orElse:() => null) == null){
+    if(LogLevels.leves.firstWhere((LevelBean levelBean) => levelBean.levelType == bean.levelType, orElse:() => null) == null){
       LogLevels.leves.add(bean);
     }
   }
