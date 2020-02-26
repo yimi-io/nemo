@@ -5,6 +5,7 @@ import 'package:nemo/levels/level_bean.dart';
 import 'package:nemo/levels/log_level.dart';
 import 'package:nemo/log.dart';
 import 'package:nemo/log_console/log_console.dart';
+import 'package:nemo/outputs/console_output.dart';
 
 void main() => runApp(MyApp());
 
@@ -82,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     LogLevels.instance;
     LogConsole.init();
     Logger logger = new Logger();
+    logger.setOutput(ConsoleOutput());
     logger.other("h", "测试hhhhhhh");
     logger.e("jkjkjkjkjkjkjkj");
     return LogConsole();
